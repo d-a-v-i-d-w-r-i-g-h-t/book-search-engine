@@ -10,11 +10,7 @@ There's no one right way to structure a good README. There is one very wrong way
 
 At a minimum, your project README needs a title and a short description explaining the what, why, and how. What was your motivation? Why did you build this project? (Note: The answer is not "Because it was a homework assignment.") What problem does it solve? What did you learn? What makes your project stand out? 
 
-Lastly, if your project is deployed, include a link to the deployed application here.
-
-If you're new to Markdown, read the GitHub guide on [Mastering Markdown](https://guides.github.com/features/mastering-markdown/).
-
-If you need an example of a good README, check out [the VSCode repository](https://github.com/microsoft/vscode).
+This project was successfully deployed on [render](https://render.com/) with a [MongoDB Cloud](https://www.mongodb.com/) database. It can be accessed [here](https://book-search-engine-5ell.onrender.com/).
 
 
 ## Table of Contents (Optional)
@@ -29,14 +25,27 @@ If your README is very long, add a table of contents to make it easy for users t
 
 ## Installation
 
-What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
+To install the application locally, copy the files and folders to the desired location. To install dependencies, enter the command
+
+```
+npm install
+```
+
+from the root directory.
 
 
 ## Usage 
 
-Provide instructions and examples for use. Include screenshots as needed. 
+The application can be run from its deployed location [here](https://book-search-engine-5ell.onrender.com/).
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
+To run it locally in a development environment, enter the command
+```
+npm run develop
+```
+from the root directory. Then open the following address in your web browser:
+```
+http://localhost:3000/
+```
 
 ```md
 ![alt text](assets/images/screenshot.png)
