@@ -2,7 +2,7 @@ const typedefs = `
   input BookInput {
     authors: [String]
     description: String!
-    bookId: ID!
+    bookId: String!
     image: String
     link: String
     title: String!
@@ -26,8 +26,8 @@ const typedefs = `
   }  
 
   type Auth {
-      token: ID!
-      user: User
+    token: ID!
+    user: User
   }
 
   type Query {
@@ -48,7 +48,9 @@ const typedefs = `
       input: BookInput
     ): User
     deleteBook(
-      bookId: ID!
+      bookId: String!
     ): User
-    }
+  }
 `;
+
+module.exports = typedefs;
