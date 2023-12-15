@@ -8,8 +8,23 @@ import { GET_ME } from '../utils/queries';
 import Auth from '../utils/auth';
 
 const SearchBooks = () => {
-  const [saveBook] = useMutation(SAVE_BOOK);
-  const { loading, error, data } = useQuery(GET_ME);
+  const [saveBook] = useMutation(SAVE_BOOK, {
+    update: (cache, { data }) => {
+      // update the cache manually after the mutation
+      const newBook = data.saveBook;
+      const { me } = cache.readQuery({ query: GET_ME });
+
+      cache.writeQuery({
+        query: GET_ME,
+        data: {
+          me: {
+            ...me,
+            savidBooks: [...me.savedBooks, newBook],
+          },
+        },
+      });
+    },
+  });
 
   // create state for holding returned google api data
   const [searchedBooks, setSearchedBooks] = useState([]);

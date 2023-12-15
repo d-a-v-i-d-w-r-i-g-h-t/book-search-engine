@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Container, Card, Button, Row, Col } from 'react-bootstrap';
 import { useMutation, useQuery } from '@apollo/client';
 import { GET_ME } from '../utils/queries';
@@ -6,36 +7,33 @@ import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
 
 const SavedBooks = () => {
-  const [removeBook] = useMutation(REMOVE_BOOK, {
-    refetchQueries: [{ query: GET_ME }]
-  });
   const { loading, data } = useQuery(GET_ME);
+  const [removeBook] = useMutation(REMOVE_BOOK);
 
-  // if (data) {
-    console.log('data');
-    console.log(data);
-    const userData = data?.me || {};
-    console.log('userData');
-    console.log(userData);
-    console.log('userData.savedBooks');
-    console.log(userData.savedBooks);
-    console.log('userData.savedBooks.length');
-    console.log(userData.savedBooks.length);
-
-  // }
-
+  // get userdata from query hook results
+  const userData = data?.me || {};
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
   const handleremoveBook = async (bookId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
+    // if user not logged in, stop execution
     if (!token) {
       return false;
     }
 
+    // call the mutation to remove a book from the user's book list
     try {
       await removeBook({
         variables: { bookId },
+        update: (cache, { data }) => {
+          // update the cache manually after the mutation
+          const updatedUserData = data.removeBook;
+          cache.writeQuery({
+            query: GET_ME,
+            data: { me: updatedUserData },
+          });
+        },
       });
 
       // upon success, remove book's id from localStorage

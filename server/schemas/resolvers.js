@@ -59,6 +59,7 @@ const resolvers ={
         { new: true }
       ).populate('savedBooks');
 
+      // return updated data
       return updatedBooks;
     },
 
@@ -72,10 +73,11 @@ const resolvers ={
 
       const updatedBooks = await User.findOneAndUpdate(
         { _id: context.user._id },
-        { $pull: { savedBooks: {bookId} }},
+        { $pull: { savedBooks: { bookId } } },
         { new: true }
       );
 
+      // return updated data
       return updatedBooks;
     },
   },
