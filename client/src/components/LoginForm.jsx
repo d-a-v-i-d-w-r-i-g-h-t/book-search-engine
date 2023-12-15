@@ -13,8 +13,6 @@ const LoginForm = () => {
   const [loginUser, { error }] = useMutation(LOGIN_USER, {
     variables: userFormData,
     onCompleted: (data) => {
-      console.log('data from login user mutation');
-      console.log(data);
       const { token, user } = data.login;
       Auth.login(token);
     },

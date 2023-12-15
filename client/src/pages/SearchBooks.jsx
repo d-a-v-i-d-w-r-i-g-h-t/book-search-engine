@@ -19,7 +19,7 @@ const SearchBooks = () => {
         data: {
           me: {
             ...me,
-            savidBooks: [...me.savedBooks, newBook],
+            savedBooks: [...me.savedBooks, newBook],
           },
         },
       });
@@ -37,7 +37,6 @@ const SearchBooks = () => {
   // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
   useEffect(() => {
     return () => {
-      console.log('running useEffect - save bookIds to Local Storage');
       saveBookIds(savedBookIds);
     }
   });
@@ -77,8 +76,6 @@ const SearchBooks = () => {
   const handleSaveBook = async (bookId) => {
     // find the book in `searchedBooks` state by the matching id
     const bookToSave = searchedBooks.find((book) => book.bookId === bookId);
-    console.log('handleSaveBook: bookToSave');
-    console.log(bookToSave);
     // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 

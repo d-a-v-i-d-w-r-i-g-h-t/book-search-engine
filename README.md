@@ -1,14 +1,20 @@
-# book-search-engine
+# Book Search Engine
 
 ## Description 
 
-Your GitHub profile is an extremely important aspect of your public identity as a developer. A well-crafted one allows you to show off your work to other developers as well as potential employers. An important component of your GitHub profile—and one that many new developers often overlook—is the README.md file.
+For this project, I took a fully-functional Google Books API search engine built with a RESTful API, and I refactored it to be a GraphQL API built with Apollo Server. This app was built using the MERN stack, with a React front end, MongoDB database, and Node.js/Express.js server and API.
 
-The quality of a README often differentiates a good project from a bad project. A good one takes advantage of the opportunity to explain and showcase what your application does, justify the technologies used, and even talk about some of the challenges you faced and features you hope to implement in the future. A good README helps you stand out among the large crowd of developers putting their work on GitHub.
+To accomplish this, I completed the following:
 
-There's no one right way to structure a good README. There is one very wrong way, however, and that is to not include a README at all or to create a very anemic one. This guide outlines a few best practices. As you progress in your career, you will develop your own ideas about what makes a good README.
+* Set up an Apollo Server to use GraphQL queries and mutations to fetch and modify data, replacing the existing RESTful API.
 
-At a minimum, your project README needs a title and a short description explaining the what, why, and how. What was your motivation? Why did you build this project? (Note: The answer is not "Because it was a homework assignment.") What problem does it solve? What did you learn? What makes your project stand out? 
+* Modified the existing authentication middleware so that it works in the context of a GraphQL API.
+
+* Created an Apollo Provider so that requests can communicate with an Apollo Server.
+
+Why would I make this change and potentially break a perfectly functioning website? There are several reasons.
+
+GraphQL provides efficient data retrieval. It allows clients to specify and request the exact shape of data they require, minimizing network traffic. Batching and caching are available and also help to reduce network traffic by grouping requests together and storing frequently requested data locally. It provides a single endpoint for all data operations, and the schema is flexible and easy to modify as needed. Clients can also subscribe to real-time data updates when the data changes on the server. Finally, with GraphQL and Apollo Client, there is a great quantity of tools and libraries available to expand functionality to suit the client's needs.
 
 This project was successfully deployed on [render](https://render.com/) with a [MongoDB Cloud](https://www.mongodb.com/) database. It can be accessed [here](https://book-search-engine-5ell.onrender.com/).
 
@@ -44,11 +50,7 @@ http://localhost:3000/
 
 ## Credits
 
-List your collaborators, if any, with links to their GitHub profiles.
-
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
-
-If you followed tutorials, include links to those here as well.
+Most of the code was already written, as can be seen in the repo commit history. To complete the refactor, I had to add [graphql](https://www.npmjs.com/package/graphql), [@apollo/client](https://www.npmjs.com/package/@apollo/client), [@apollo/server](https://www.npmjs.com/package/@apollo/server), and [apollo-server-express](https://www.npmjs.com/package/apollo-server-express), and modify the code appropriately.
 
 
 ## License

@@ -15,13 +15,9 @@ const SignupForm = () => {
   const [addUser, { error }] = useMutation(ADD_USER, {
     variables: userFormData,
     onCompleted: (data) => {
-      console.log('data from login user mutation');
-      console.log(data);
       // Handle the successful completion of the mutation here
       const { token, user } = data.addUser;
       Auth.login(token);
-      console.log('created user');
-      console.log(user);
     },
   });
   
