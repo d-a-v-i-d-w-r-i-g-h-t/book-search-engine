@@ -1,4 +1,4 @@
-const typedefs = `
+const typeDefs = `
   input BookInput {
     authors: [String]
     description: String!
@@ -35,7 +35,7 @@ const typedefs = `
   }
 
   type Mutation { 
-    createUser(
+    addUser(
       username: String!,
       email: String!,
       password: String!
@@ -47,10 +47,10 @@ const typedefs = `
     saveBook(
       input: BookInput
     ): User
-    deleteBook(
+    removeBook(
       bookId: String!
     ): User
   }
 `;
 
-module.exports = typedefs;
+module.exports = typeDefs;

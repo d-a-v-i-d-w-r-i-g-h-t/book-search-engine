@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
-import { CREATE_USER } from '../utils/mutations';
+import { ADD_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 const SignupForm = () => {
@@ -12,13 +12,13 @@ const SignupForm = () => {
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
 
-  const [createUser, { error }] = useMutation(CREATE_USER, {
+  const [addUser, { error }] = useMutation(ADD_USER, {
     variables: userFormData,
     onCompleted: (data) => {
       console.log('data from login user mutation');
       console.log(data);
       // Handle the successful completion of the mutation here
-      const { token, user } = data.createUser;
+      const { token, user } = data.addUser;
       Auth.login(token);
       console.log('created user');
       console.log(user);
@@ -41,7 +41,7 @@ const SignupForm = () => {
     }
 
     try {
-      await createUser();
+      await addUser();
 
     } catch (err) {
       console.error(err);

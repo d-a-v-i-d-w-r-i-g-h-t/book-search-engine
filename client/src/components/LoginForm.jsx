@@ -15,7 +15,7 @@ const LoginForm = () => {
     onCompleted: (data) => {
       console.log('data from login user mutation');
       console.log(data);
-      const { token, user } = data.loginUser;
+      const { token, user } = data.login;
       Auth.login(token);
     },
   });

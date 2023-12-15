@@ -3,15 +3,15 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 // set token secret and expiration date
-const secret = process.env.JWT_SECRET || 'mysecretsshhhhh';
+const secret = process.env.JWT_SECRET || 'defaultsecretvalue';
 const expiration = process.env.JWT_EXPIRATION || '2h';
 
 module.exports = {
-  AuthenticationError: new GraphQLError('Could not authenticate user.', {
-    extensions: {
-      code: 'UNAUTHENTICATED',
-    }
-  }),
+  // AuthenticationError: new GraphQLError('Could not authenticate user.', {
+  //   extensions: {
+  //     code: 'UNAUTHENTICATED',
+  //   }
+  // }),
   // function for our authenticated routes
   authMiddleware: function ({ req }) {
     // allows token to be sent via req.body, req.query, or headers
